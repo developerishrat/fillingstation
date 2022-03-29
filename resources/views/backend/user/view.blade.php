@@ -21,7 +21,12 @@ Dashboard
           <div class="row justify-content-center">
               <div class="col-md-12">
                   <div class="card">
-                      <div class="card-header">{{ __('Welcome') }} , </div>
+                      <div class="card-header">
+                          <div class="alert alert-info">
+                              <h2 class="text-center">All User Information</h2>
+                          </div>
+
+                    </div>
 
                       <div class="card-body">
                           @if (session('status'))
@@ -31,9 +36,7 @@ Dashboard
                           @endif
 
 
-                          <div class="alert alert-success">
-                              <h2 class="text-center">Total User:</h2>
-                          </div>
+
 
 
                           <table class="table table-striped">
@@ -45,10 +48,22 @@ Dashboard
                               </tr>
 
 
+                              @foreach ($users as $index=>$user_info)
+
+
                               <tr>
-
+                                  <td>{{ $users->firstitem()+$index }}</td>
+                                  <td>{{ $user_info->name }}</td>
+                                  <td>{{ $user_info->email }}</td>
+                                  {{-- <td>{{ $user_info->created_at->format('d/m/y') }}</td> --}}
+                                  <td>{{ $user_info->created_at->diffForHumans() }}</td>
                               </tr>
+                              @endforeach
 
+
+                          </table>
+                          {{ $users->links() }}
+                      </div>
 
 
                           </table>

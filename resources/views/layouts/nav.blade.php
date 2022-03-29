@@ -24,10 +24,24 @@
       </div><!-- menu-item -->
     </a><!-- sl-menu-link -->
 
-    <a href="{{ url('/subcategory') }}" class="sl-menu-link @yield('subcategory')">
+    </a><!-- sl-menu-link -->
+    <a href="#" class="sl-menu-link  @yield('fuel')">
+    <div class="sl-menu-item">
+        <i class="menu-item-icon ion-ios-photos-outline tx-20"></i>
+        <span class="menu-item-label">Fuel</span>
+        <i class="menu-item-arrow fa fa-angle-down"></i>
+    </div><!-- menu-item -->
+    </a><!-- sl-menu-link -->
+    <ul class="sl-menu-sub nav flex-column">
+    <li class="nav-item"><a href="{{ url('/addfuel') }}" class="nav-link">Add Fuel</a></li>
+    <li class="nav-item"><a href="{{ url('/viewfuel') }}" class="nav-link">View Fuel</a></li>
+
+    </ul>
+
+    <a href="">
       <div class="sl-menu-item">
         <i class="menu-item-icon icon ion-ios-photos-outline tx-20"></i>
-        <span class="menu-item-label">Subcategory</span>
+        <span class="menu-item-label">Stock</span>
       </div><!-- menu-item -->
 
     </a><!-- sl-menu-link -->

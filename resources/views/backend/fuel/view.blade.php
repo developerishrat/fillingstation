@@ -1,42 +1,37 @@
-@extends('layouts.master')
-
+@extends('layouts.starlight')
+@section('fuel')
+active
+@endsection
+@section('title')
+Fuel
+@endsection
 
 @section('content')
 @include('layouts.nav')
-      <!-- partial -->
-      <div class="main-panel">
-        <div class="content-wrapper">
-              <!-- Breadcrumb -->
-            <div class="page-header">
-                <h3 class="page-title"> Material design icons </h3>
-                <nav aria-label="breadcrumb">
-                  <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Icons</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Material design icons</li>
-                  </ol>
-                </nav>
-              </div>
-                <!--End Breadcrumb -->
-            <!-- MY MAIN BODY -->
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-md-12">
-                        <div class="card">
+<!-- ########## START: MAIN PANEL ########## -->
+<div class="sl-mainpanel">
+    <nav class="breadcrumb sl-breadcrumb">
+      <a class="breadcrumb-item" href="{{ url('/home') }}">Dashboard</a>
+      <a class="breadcrumb-item" href="index.html">Pages</a>
+      <span class="breadcrumb-item active">Blank Page</span>
+    </nav>
 
-                            <div class="card-header">
-                                <a class="btn btn-success btn-sm  float-right" href="{{ url('/addfuel') }}">Add Fuel</a>
-                                <a class="btn btn-primary btn-sm  float-right" href="">All Print</a>
-                                <h3> All Fuel Information</h3>
+    <div class="sl-pagebody">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                   <div class="card">
+                        <div class="card-header">
+                            <div class="alert alert-info">
+                                <h2 class="text-center">All Fuel Information</h2>
                             </div>
-
-                            <div class="card-body">
-
-                                @if (session('status'))
-                                    <div class="alert alert-success" role="alert">
-                                        {{ session('status') }}
-                                    </div>
+                        </div>
+                        <div class="card-body">
+                            @if(session('del_success'))
+                                <div class="alert alert-success">
+                                    {{session('del_success')  }}
+                                </div>
                                 @endif
-
                                 <table class="table table-striped">
                                     <tr>
                                         <th>SL</th>
@@ -56,10 +51,8 @@
                                         <td>{{ $fuel_info->price }}</td>
                                         <td>{{ $fuel_info->created_at->diffForHumans() }}</td>
                                         <td>
-
-                                                <a href="#"class="btn btn-success btn-sm" data-toggle="tooltip" data-original-title="Edit"><i class="mdi mdi-tooltip-edit"></i></a>
-                                                <!--  <a href="#" class="btn btn-primary btn-sm" data-toggle="tooltip" data-original-title="Print"><i class="fa fa-print font-14"></i></a> -->
-                                                <a href="#" class="btn btn-danger btn-sm" data-toggle="tooltip" data-original-title="Delete"><i class="mdi mdi-delete"></i></a>
+                                            <a href="" class="btn btn-info">Edit</a>
+                                            <a href="" class="btn btn-danger">Delete</a>
 
                                         </td>
                                     </tr>
@@ -68,15 +61,21 @@
 
                                 </table>
                                 {{ $fuels->links() }}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-             <!-- END MAIN BODY -->
-        </div>
-        <!-- content-wrapper ends -->
 
-@include('layouts.footer')
+                        </div>
+                   </div>
+                </div>
+
+            </div>
+        </div>
+    </div><!-- sl-pagebody -->
+  </div><!-- sl-mainpanel -->
+  <!-- ########## END: MAIN PANEL ########## -->
+
+
+
+
+
+
 
 @endsection
