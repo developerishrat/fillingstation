@@ -1,158 +1,262 @@
-<div class="container-scroller">
-    <!-- partial:../../partials/_navbar.html -->
-    <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
-      <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-        <a class="navbar-brand brand-logo" href="../../index.html"><h1 class="text-danger">FSMS</h1></a>
-        <a class="navbar-brand brand-logo-mini" href="../../index.html"><img src="{{ asset('master_dashboard/images/logo-mini.svg') }}" alt="logo" /></a>
-      </div>
-      <div class="navbar-menu-wrapper d-flex align-items-stretch">
-        <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
-          <span class="mdi mdi-menu"></span>
-        </button>
-        <div class="search-field d-none d-md-block">
-          <form class="d-flex align-items-center h-100" action="#">
-            <div class="input-group">
-              <div class="input-group-prepend bg-transparent">
+<!-- ########## START: LEFT PANEL ########## -->
+<div class="sl-logo"><a href=""><i class="icon ion-android-star-outline"></i> {{ env('APP_NAME') }}</a></div>
+<div class="sl-sideleft">
+  <div class="input-group input-group-search">
+    <input type="search" name="search" class="form-control" placeholder="Search">
+    <span class="input-group-btn">
+      <button class="btn"><i class="fa fa-search"></i></button>
+    </span><!-- input-group-btn -->
+  </div><!-- input-group -->
 
-              </div>
-              <h3>Filling Station Management System</h3>
-             <!-- <input type="text" class="form-control bg-transparent border-0" placeholder="Search projects">-->
-            </div>
-          </form>
-        </div>
-        <ul class="navbar-nav navbar-nav-right">
-          <li class="nav-item nav-profile dropdown">
-            <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
-              <div class="nav-profile-img">
-                <img src="{{ asset('master_dashboard/images/faces/face1.jpg') }}" alt="image">
-                <span class="availability-status online"></span>
-              </div>
-              <div class="nav-profile-text">
-                <p class="mb-1 text-black">{{ Auth::user()->name }}</p>
-              </div>
-            </a>
-            <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
-              <a class="dropdown-item" href="#">
-                <i class="mdi mdi-cached mr-2 text-success"></i> Activity Log </a>
-              <div class="dropdown-divider"></div>
+  <label class="sidebar-label">Navigation</label>
+  <div class="sl-sideleft-menu">
+    <a href="{{ url('/home') }}" class="sl-menu-link @yield('dashboard')" >
+      <div class="sl-menu-item">
+        <i class="menu-item-icon icon ion-ios-home-outline tx-22"></i>
+        <span class="menu-item-label">Dashboard</span>
+      </div><!-- menu-item -->
+    </a><!-- sl-menu-link -->
 
-              <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-              document.getElementById('logout-form').submit();">
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                        @csrf
-                    </form>
+    <a href="{{ url('/viewuser') }}" class="sl-menu-link @yield('user')">
+      <div class="sl-menu-item">
+        <i class="menu-item-icon icon ion-ios-people-outline tx-20"></i>
+        <span class="menu-item-label">User</span>
+      </div><!-- menu-item -->
+    </a><!-- sl-menu-link -->
 
-                <i class="mdi mdi-logout mr-2 text-primary"></i> Signout </a>
-            </div>
-          </li>
-          <li class="nav-item d-none d-lg-block full-screen-link">
-            <a class="nav-link">
-              <i class="mdi mdi-fullscreen" id="fullscreen-button"></i>
-            </a>
-          </li>
+    <a href="{{ url('/subcategory') }}" class="sl-menu-link @yield('subcategory')">
+      <div class="sl-menu-item">
+        <i class="menu-item-icon icon ion-ios-photos-outline tx-20"></i>
+        <span class="menu-item-label">Subcategory</span>
+      </div><!-- menu-item -->
+
+    </a><!-- sl-menu-link -->
+    <a href="{{ url('/addproduct') }}" class="sl-menu-link @yield('product')">
+      <div class="sl-menu-item">
+        <i class="menu-item-icon icon ion-ios-photos-outline tx-20"></i>
+        <span class="menu-item-label">Product</span>
+      </div><!-- menu-item -->
+
+    </a><!-- sl-menu-link -->
+    <a href="#" class="sl-menu-link">
+      <div class="sl-menu-item">
+        <i class="menu-item-icon ion-ios-pie-outline tx-20"></i>
+        <span class="menu-item-label">Charts</span>
+        <i class="menu-item-arrow fa fa-angle-down"></i>
+      </div><!-- menu-item -->
+    </a><!-- sl-menu-link -->
+    <ul class="sl-menu-sub nav flex-column">
+      <li class="nav-item"><a href="chart-morris.html" class="nav-link">Morris Charts</a></li>
+      <li class="nav-item"><a href="chart-flot.html" class="nav-link">Flot Charts</a></li>
+      <li class="nav-item"><a href="chart-chartjs.html" class="nav-link">Chart JS</a></li>
+      <li class="nav-item"><a href="chart-rickshaw.html" class="nav-link">Rickshaw</a></li>
+      <li class="nav-item"><a href="chart-sparkline.html" class="nav-link">Sparkline</a></li>
+    </ul>
 
 
-        </ul>
-        <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
-          <span class="mdi mdi-menu"></span>
-        </button>
-      </div>
+
+
+
+  </div><!-- sl-sideleft-menu -->
+
+  <br>
+</div><!-- sl-sideleft -->
+<!-- ########## END: LEFT PANEL ########## -->
+
+<!-- ########## START: HEAD PANEL ########## -->
+<div class="sl-header">
+  <div class="sl-header-left">
+    <div class="navicon-left hidden-md-down"><a id="btnLeftMenu" href=""><i class="icon ion-navicon-round"></i></a></div>
+    <div class="navicon-left hidden-lg-up"><a id="btnLeftMenuMobile" href=""><i class="icon ion-navicon-round"></i></a></div>
+  </div><!-- sl-header-left -->
+  <div class="sl-header-right">
+    <nav class="nav">
+      <div class="dropdown">
+        <a href="" class="nav-link nav-link-profile" data-toggle="dropdown">
+          <span class="logged-name">{{ Auth::user()->name }}</span></span>
+          <img src="{{ asset('uploads/profile') }}/{{ Auth::user()->profile_photo }}" class="wd-32 rounded-circle" alt="">
+        </a>
+        <div class="dropdown-menu dropdown-menu-header wd-200">
+          <ul class="list-unstyled user-profile-nav">
+            <li><a href="{{ url('/profile/edit') }}"><i class="icon ion-ios-person-outline"></i> Edit Profile</a></li>
+            <li>
+                <a href="{{ route('logout') }}"onclick="event.preventDefault();
+                document.getElementById('logout-form').submit();"><i class="icon ion-power"></i> Sign Out</a>
+
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                    @csrf
+                </form>
+
+            </li>
+          </ul>
+        </div><!-- dropdown-menu -->
+      </div><!-- dropdown -->
     </nav>
-    <!-- partial -->
-    <div class="container-fluid page-body-wrapper">
-      <!-- partial:../../partials/_sidebar.html -->
-      <nav class="sidebar sidebar-offcanvas" id="sidebar">
-        <ul class="nav">
-          <li class="nav-item nav-profile">
-            <a href="#" class="nav-link">
-              <div class="nav-profile-image">
-                <img src="{{ asset('master_dashboard/images/faces/face1.jpg') }}" alt="profile">
-                <span class="login-status online"></span>
-                <!--change to offline or busy as needed-->
-              </div>
-              <div class="nav-profile-text d-flex flex-column">
-                <span class="font-weight-bold mb-2">{{ Auth::user()->name }}</span>
-               <!-- <span class="text-secondary text-small">Admin</span>-->
-              </div>
-              <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="{{ url('home') }}" class="nav-link">
-              <span class="menu-title">Dashboard</span>
-              <i class="mdi mdi-home menu-icon"></i>
-            </a>
-          </li>
-          <!--
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-              <span class="menu-title">Basic UI Elements</span>
-              <i class="menu-arrow"></i>
-              <i class="mdi mdi-crosshairs-gps menu-icon"></i>
-            </a>
-            <div class="collapse" id="ui-basic">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="../../pages/ui-features/buttons.html">Buttons</a></li>
-                <li class="nav-item"> <a class="nav-link" href="../../pages/ui-features/typography.html">Typography</a></li>
-              </ul>
+    <div class="navicon-right">
+      <a id="btnRightMenu" href="" class="pos-relative">
+        <i class="icon ion-ios-bell-outline"></i>
+        <!-- start: if statement -->
+        <span class="square-8 bg-danger"></span>
+        <!-- end: if statement -->
+      </a>
+    </div><!-- navicon-right -->
+  </div><!-- sl-header-right -->
+</div><!-- sl-header -->
+<!-- ########## END: HEAD PANEL ########## -->
+
+<!-- ########## START: RIGHT PANEL ########## -->
+<div class="sl-sideright">
+  <ul class="nav nav-tabs nav-fill sidebar-tabs" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" data-toggle="tab" role="tab" href="#messages">Messages (2)</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="tab" role="tab" href="#notifications">Notifications (8)</a>
+    </li>
+  </ul><!-- sidebar-tabs -->
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div class="tab-pane pos-absolute a-0 mg-t-60 active" id="messages" role="tabpanel">
+      <div class="media-list">
+        <!-- loop starts here -->
+        <a href="" class="media-list-link">
+          <div class="media">
+            <img src="../img/img3.jpg" class="wd-40 rounded-circle" alt="">
+            <div class="media-body">
+              <p class="mg-b-0 tx-medium tx-gray-800 tx-13">Donna Seay</p>
+              <span class="d-block tx-11 tx-gray-500">2 minutes ago</span>
+              <p class="tx-13 mg-t-10 mg-b-0">A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring.</p>
             </div>
-          </li>
-          -->
-          <li class="nav-item">
-            <a class="nav-link" href="{{ 'viewuser ' }}">
-              <span class="menu-title">Users</span>
-              <i class="mdi mdi-contacts menu-icon"></i>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{ 'viewfuel' }}">
-              <span class="menu-title">Fuel</span>
-              <i class="mdi mdi-format-list-bulleted menu-icon"></i>
-            </a>
-          </li>
-
-           <!--<li class="nav-item">
-            <a class="nav-link" href="{{ 'viewpurchase' }}">
-              <span class="menu-title">Purchase</span>
-              <i class="mdi mdi-chart-bar menu-icon"></i>
-            </a>
-          </li>
-
-         <li class="nav-item">
-            <a class="nav-link" href="{{ 'viewstock' }}">
-              <span class="menu-title">Stock</span>
-              <i class="mdi mdi-table-large menu-icon"></i>
-            </a>-->
-
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{ '/viewsale' }}">
-              <span class="menu-title">Sales</span>
-              <i class="mdi mdi-table-large menu-icon"></i>
-            </a>
-
-          </li>
-          <!--
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#general-pages" aria-expanded="false" aria-controls="general-pages">
-              <span class="menu-title">Sample Pages</span>
-              <i class="menu-arrow"></i>
-              <i class="mdi mdi-medical-bag menu-icon"></i>
-            </a>
-            <div class="collapse" id="general-pages">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="../../pages/samples/blank-page.html"> Blank Page </a></li>
-                <li class="nav-item"> <a class="nav-link" href="../../pages/samples/login.html"> Login </a></li>
-                <li class="nav-item"> <a class="nav-link" href="../../pages/samples/register.html"> Register </a></li>
-                <li class="nav-item"> <a class="nav-link" href="../../pages/samples/error-404.html"> 404 </a></li>
-                <li class="nav-item"> <a class="nav-link" href="../../pages/samples/error-500.html"> 500 </a></li>
-              </ul>
+          </div><!-- media -->
+        </a>
+        <!-- loop ends here -->
+        <a href="" class="media-list-link">
+          <div class="media">
+            <img src="../img/img4.jpg" class="wd-40 rounded-circle" alt="">
+            <div class="media-body">
+              <p class="mg-b-0 tx-medium tx-gray-800 tx-13">Samantha Francis</p>
+              <span class="d-block tx-11 tx-gray-500">3 hours ago</span>
+              <p class="tx-13 mg-t-10 mg-b-0">My entire soul, like these sweet mornings of spring.</p>
             </div>
-          </li>-->
+          </div><!-- media -->
+        </a>
+        <a href="" class="media-list-link">
+          <div class="media">
+            <img src="../img/img7.jpg" class="wd-40 rounded-circle" alt="">
+            <div class="media-body">
+              <p class="mg-b-0 tx-medium tx-gray-800 tx-13">Robert Walker</p>
+              <span class="d-block tx-11 tx-gray-500">5 hours ago</span>
+              <p class="tx-13 mg-t-10 mg-b-0">I should be incapable of drawing a single stroke at the present moment...</p>
+            </div>
+          </div><!-- media -->
+        </a>
+        <a href="" class="media-list-link">
+          <div class="media">
+            <img src="../img/img5.jpg" class="wd-40 rounded-circle" alt="">
+            <div class="media-body">
+              <p class="mg-b-0 tx-medium tx-gray-800 tx-13">Larry Smith</p>
+              <span class="d-block tx-11 tx-gray-500">Yesterday, 8:34pm</span>
 
-        </ul>
-      </nav>
+              <p class="tx-13 mg-t-10 mg-b-0">When, while the lovely valley teems with vapour around me, and the meridian sun strikes...</p>
+            </div>
+          </div><!-- media -->
+        </a>
+        <a href="" class="media-list-link">
+          <div class="media">
+            <img src="../img/img3.jpg" class="wd-40 rounded-circle" alt="">
+            <div class="media-body">
+              <p class="mg-b-0 tx-medium tx-gray-800 tx-13">Donna Seay</p>
+              <span class="d-block tx-11 tx-gray-500">Jan 23, 2:32am</span>
+              <p class="tx-13 mg-t-10 mg-b-0">A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring.</p>
+            </div>
+          </div><!-- media -->
+        </a>
+      </div><!-- media-list -->
+      <div class="pd-15">
+        <a href="" class="btn btn-secondary btn-block bd-0 rounded-0 tx-10 tx-uppercase tx-mont tx-medium tx-spacing-2">View More Messages</a>
+      </div>
+    </div><!-- #messages -->
 
+    <div class="tab-pane pos-absolute a-0 mg-t-60 overflow-y-auto" id="notifications" role="tabpanel">
+      <div class="media-list">
+        <!-- loop starts here -->
+        <a href="" class="media-list-link read">
+          <div class="media pd-x-20 pd-y-15">
+            <img src="../img/img8.jpg" class="wd-40 rounded-circle" alt="">
+            <div class="media-body">
+              <p class="tx-13 mg-b-0 tx-gray-700"><strong class="tx-medium tx-gray-800">Suzzeth Bungaos</strong> tagged you and 18 others in a post.</p>
+              <span class="tx-12">October 03, 2017 8:45am</span>
+            </div>
+          </div><!-- media -->
+        </a>
+        <!-- loop ends here -->
+        <a href="" class="media-list-link read">
+          <div class="media pd-x-20 pd-y-15">
+            <img src="../img/img9.jpg" class="wd-40 rounded-circle" alt="">
+            <div class="media-body">
+              <p class="tx-13 mg-b-0 tx-gray-700"><strong class="tx-medium tx-gray-800">Mellisa Brown</strong> appreciated your work <strong class="tx-medium tx-gray-800">The Social Network</strong></p>
+              <span class="tx-12">October 02, 2017 12:44am</span>
+            </div>
+          </div><!-- media -->
+        </a>
+        <a href="" class="media-list-link read">
+          <div class="media pd-x-20 pd-y-15">
+            <img src="../img/img10.jpg" class="wd-40 rounded-circle" alt="">
+            <div class="media-body">
+              <p class="tx-13 mg-b-0 tx-gray-700">20+ new items added are for sale in your <strong class="tx-medium tx-gray-800">Sale Group</strong></p>
+              <span class="tx-12">October 01, 2017 10:20pm</span>
+            </div>
+          </div><!-- media -->
+        </a>
+        <a href="" class="media-list-link read">
+          <div class="media pd-x-20 pd-y-15">
+            <img src="../img/img5.jpg" class="wd-40 rounded-circle" alt="">
+            <div class="media-body">
+              <p class="tx-13 mg-b-0 tx-gray-700"><strong class="tx-medium tx-gray-800">Julius Erving</strong> wants to connect with you on your conversation with <strong class="tx-medium tx-gray-800">Ronnie Mara</strong></p>
+              <span class="tx-12">October 01, 2017 6:08pm</span>
+            </div>
+          </div><!-- media -->
+        </a>
+        <a href="" class="media-list-link read">
+          <div class="media pd-x-20 pd-y-15">
+            <img src="../img/img8.jpg" class="wd-40 rounded-circle" alt="">
+            <div class="media-body">
+              <p class="tx-13 mg-b-0 tx-gray-700"><strong class="tx-medium tx-gray-800">Suzzeth Bungaos</strong> tagged you and 12 others in a post.</p>
+              <span class="tx-12">September 27, 2017 6:45am</span>
+            </div>
+          </div><!-- media -->
+        </a>
+        <a href="" class="media-list-link read">
+          <div class="media pd-x-20 pd-y-15">
+            <img src="../img/img10.jpg" class="wd-40 rounded-circle" alt="">
+            <div class="media-body">
+              <p class="tx-13 mg-b-0 tx-gray-700">10+ new items added are for sale in your <strong class="tx-medium tx-gray-800">Sale Group</strong></p>
+              <span class="tx-12">September 28, 2017 11:30pm</span>
+            </div>
+          </div><!-- media -->
+        </a>
+        <a href="" class="media-list-link read">
+          <div class="media pd-x-20 pd-y-15">
+            <img src="../img/img9.jpg" class="wd-40 rounded-circle" alt="">
+            <div class="media-body">
+              <p class="tx-13 mg-b-0 tx-gray-700"><strong class="tx-medium tx-gray-800">Mellisa Brown</strong> appreciated your work <strong class="tx-medium tx-gray-800">The Great Pyramid</strong></p>
+              <span class="tx-12">September 26, 2017 11:01am</span>
+            </div>
+          </div><!-- media -->
+        </a>
+        <a href="" class="media-list-link read">
+          <div class="media pd-x-20 pd-y-15">
+            <img src="../img/img5.jpg" class="wd-40 rounded-circle" alt="">
+            <div class="media-body">
+              <p class="tx-13 mg-b-0 tx-gray-700"><strong class="tx-medium tx-gray-800">Julius Erving</strong> wants to connect with you on your conversation with <strong class="tx-medium tx-gray-800">Ronnie Mara</strong></p>
+              <span class="tx-12">September 23, 2017 9:19pm</span>
+            </div>
+          </div><!-- media -->
+        </a>
+      </div><!-- media-list -->
+    </div><!-- #notifications -->
 
-
-
+  </div><!-- tab-content -->
+</div><!-- sl-sideright -->
+<!-- ########## END: RIGHT PANEL ########## --->

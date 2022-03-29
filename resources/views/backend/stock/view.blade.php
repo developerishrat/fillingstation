@@ -36,8 +36,7 @@
                                     <tr>
                                         <th>SL</th>
                                         <th>Fuel Name</th>
-                                        <th>IN</th>
-                                        <th>OUT</th>
+                                        <th>Stock</th>
 
 
                                     </tr>
@@ -48,7 +47,7 @@
                                         <td>{{ $fuel_info->name }}</td>
                                         <td>{{ $fuel_info->quantity }}</td>
 
-                                        <td>{{ App\Models\Sale::find($fuel_info->fuel_id)->name }}</td>
+
 
                                        <td>
 

@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.starlight')
 
 @section('content')
  @include('layouts.nav')
