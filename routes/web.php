@@ -36,6 +36,7 @@ Route::post('/users/insert',[UserController::class,'insert']);
 Route::get('/addfuel',[FuelController::class,'index']);
 Route::post('/fuel/insert',[FuelController::class,'insert']);
 Route::get('/viewfuel',[FuelController::class,'list']);
+Route::get('/fuel/delete/{delete_fuel_id}',[FuelController::class,'delete']);
 
 //Purchase
 Route::get('/addpurchase',[PurchaseController::class,'index']);

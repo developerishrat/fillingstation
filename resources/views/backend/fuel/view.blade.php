@@ -38,6 +38,7 @@ Fuel
                                         <th>Name</th>
                                         <th>Quantity</th>
                                         <th>Price Per Liter</th>
+                                        <th>Fuel Image</th>
 
                                         <th>Creted At</th>
                                         <th>Action</th>
@@ -49,10 +50,11 @@ Fuel
                                         <td>{{ $fuel_info->name }}</td>
                                         <td>{{ $fuel_info->quantity }}</td>
                                         <td>{{ $fuel_info->price }}</td>
+                                        <td><img width="50" src="{{ asset('uploads/fuel') }}/{{ $fuel_info->fuel_photo }}" alt=""></td>
                                         <td>{{ $fuel_info->created_at->diffForHumans() }}</td>
                                         <td>
                                             <a href="" class="btn btn-info">Edit</a>
-                                            <a href="" class="btn btn-danger">Delete</a>
+                                            <a href="{{ url('/fuel/delete') }}/{{ $fuel_info->id }}" class="btn btn-danger">Delete</a>
 
                                         </td>
                                     </tr>

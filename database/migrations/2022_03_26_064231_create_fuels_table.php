@@ -19,6 +19,7 @@ return new class extends Migration
             //$table->text('image')->nullable();
             $table->integer('quantity');
             $table->decimal('price',8,2)->default(0.00);
+            $table->string('fuel_photo')->default('default.jpg');
             $table->string('status')->default('active');
             $table->timestamps();
         });

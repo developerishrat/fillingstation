@@ -46,10 +46,6 @@ Fuel
                                     <input type="text" name="name" class="form-control" id="exampleInputName" placeholder="Name">
                                 </div>
 
-                                <!--<div class="form-group col-lg-4">
-                                    <label for="image">Image</label>
-                                    <input type="file" name="image" class="form-control" id="exampleInputName" placeholder="image">
-                                </div>-->
 
                                 <div class="form-group col-lg-6">
                                     <label for="quantity">Quantity</label>
@@ -60,6 +56,11 @@ Fuel
                                     <label for="Price">Price Per Liter</label>
                                     <input type="number" name="price" class="form-control" id="exampleInputPrice" placeholder="Enter price pre liter">
                                 </div>
+                                <div class="form-group col-lg-6">
+                                    <label for="image">Image</label>
+                                    <input type="file" name="fuel_photo" class="form-control" id="exampleInputName" placeholder="Fuel Image">
+                                </div>
+
 
                             </div>
 
