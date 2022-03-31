@@ -1,11 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FrontendController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\FuelController;
-use App\Http\Controllers\PurchaseController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\SaleController;
 use App\Http\Controllers\StockController;
+use App\Http\Controllers\CuponController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,13 +21,16 @@ use App\Http\Controllers\StockController;
 |
 */
 
-Route::get('/', function () {
-    return view('frontend/index');
-});
+//Route::get('/', function () {
+    //return view('frontend/index');
+//});
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [FrontendController::class, 'main']);
+Route::get('/veiwdetails/{id}', [FrontendController::class, 'veiwdetails']);
+Route::get('/shop', [FrontendController::class, 'shop']);
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 
 //User
@@ -37,22 +43,33 @@ Route::get('/addfuel',[FuelController::class,'index']);
 Route::post('/fuel/insert',[FuelController::class,'insert']);
 Route::get('/viewfuel',[FuelController::class,'list']);
 Route::get('/fuel/delete/{delete_fuel_id}',[FuelController::class,'delete']);
+Route::get('/fuel/edit/{edit_fuel_id}',[FuelController::class,'edit']);
+Route::post('/fuel/update',[FuelController::class,'update']);
 
-//Purchase
-Route::get('/addpurchase',[PurchaseController::class,'index']);
-Route::post('/purchase/insert',[PurchaseController::class,'insert']);
-Route::get('/viewpurchase',[PurchaseController::class,'list']);
+//Cart
+Route::post('/addto/cart',[CartController::class,'addtocart']);
+Route::get('/delete/cart/{cart_id}',[CartController::class,'delete']);
+Route::get('/cart',[CartController::class,'cart']);
+Route::post('/cart/update',[CartController::class,'cartupdate']);
+Route::get('/cart/{cupon_name}',[CartController::class,'cart']);
+
+Route::post('/order/confirm',[CartController::class,'order']);
+
+//order
+Route::get('/vieworder',[CartController::class,'vieworder']);
 
 
-//Sale
-Route::get('/addsale',[SaleController::class,'index']);
-Route::post('/sale/insert',[SaleController::class,'insert']);
-Route::get('/viewsale',[SaleController::class,'list']);
-Route::get('/viewdetails/{id}',[SaleController::class,'viewdetails']);
+
+//Cupon
+Route::get('/cupon',[CuponController::class,'cupon']);
+Route::post('/cupon/insert',[CuponController::class,'insert']);
 
 
-//Stock
-Route::get('/viewstock',[StockCOntroller::class,'list']);
+//CheckOut
+Route::get('/checkout', [FrontendController::class, 'checkout']);
+
+
+
 
 
 

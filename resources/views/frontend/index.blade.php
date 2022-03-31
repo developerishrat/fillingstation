@@ -60,81 +60,10 @@
         </div>
     </div>
     <!-- slider-area end -->
-    <!-- featured-area start -->
-    <div class="featured-area featured-area2">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="featured-active2 owl-carousel next-prev-style">
-                        <div class="featured-wrap">
-                            <div class="featured-img">
-                                <img src="assets/images/featured/6.jpg" alt="">
-                                <div class="featured-content">
-                                    <a href="shop.html">Pure Honey</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="featured-wrap">
-                            <div class="featured-img">
-                                <img src="assets/images/featured/7.jpg" alt="">
-                                <div class="featured-content">
-                                    <a href="shop.html">Mustard Oil</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="featured-wrap">
-                            <div class="featured-img">
-                                <img src="assets/images/featured/8.jpg" alt="">
-                                <div class="featured-content">
-                                    <a href="shop.html">Olive Oil</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="featured-wrap">
-                            <div class="featured-img">
-                                <img src="assets/images/featured/6.jpg" alt="">
-                                <div class="featured-content">
-                                    <a href="shop.html">Pure Honey</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="featured-wrap">
-                            <div class="featured-img">
-                                <img src="assets/images/featured/8.jpg" alt="">
-                                <div class="featured-content">
-                                    <a href="shop.html">Olive Oil</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- featured-area end -->
-    <!-- start count-down-section -->
-    <div class="count-down-area count-down-area-sub">
-        <section class="count-down-section section-padding parallax" data-speed="7">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12 col-lg-12 text-center">
-                        <h2 class="big">Deal Of the Day <span>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin</span></h2>
-                    </div>
-                    <div class="col-12 col-lg-12 text-center">
-                        <div class="count-down-clock text-center">
-                            <div id="clock">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- end row -->
-            </div>
-            <!-- end container -->
-        </section>
-    </div>
-    <!-- end count-down-section -->
+
+
     <!-- product-area start -->
-    <div class="product-area product-area-2">
+    <!--<div class="product-area product-area-2">
         <div class="fluid-container">
             <div class="row">
                 <div class="col-12">
@@ -255,7 +184,7 @@
                 </li>
             </ul>
         </div>
-    </div>
+    </div>-->
     <!-- product-area end -->
     <!-- product-area start -->
     <div class="product-area">
@@ -263,348 +192,66 @@
             <div class="row">
                 <div class="col-12">
                     <div class="section-title">
-                        <h2>Our Latest Product</h2>
+                        <h2>Our Latest Fuel</h2>
                         <img src="assets/images/section-title.png" alt="">
                     </div>
                 </div>
             </div>
             <ul class="row">
+                @foreach ($fuels as $fuel_info)
+
                 <li class="col-xl-3 col-lg-4 col-sm-6 col-12">
                     <div class="product-wrap">
                         <div class="product-img">
                             <span>Sale</span>
-                            <img src="assets/images/product/15.jpg" alt="">
+                            <img src="{{ asset('uploads/fuel') }}/{{ $fuel_info->fuel_photo }}" alt="">
                             <div class="product-icon flex-style">
                                 <ul>
-                                    <li><a data-toggle="modal" data-target="#exampleModalCenter" href="javascript:void(0);"><i class="fa fa-eye"></i></a></li>
-                                    <li><a href="wishlist.html"><i class="fa fa-heart"></i></a></li>
-                                    <li><a href="cart.html"><i class="fa fa-shopping-bag"></i></a></li>
+                                    <li><a data-toggle="modal" data-target="#{{ $fuel_info->id }}" href="javascript:void(0);"><i class="fa fa-eye"></i></a></li>
+
+                                    <li><a href="{{ url('cart') }}"><i class="fa fa-shopping-bag"></i></a></li>
                                 </ul>
                             </div>
                         </div>
                         <div class="product-content">
-                            <h3><a href="single-product.html">Pure Nature Product</a></h3>
-                            <p class="pull-left">$125
+                            <h3><a href="{{ url('/veiwdetails') }}/{{ $fuel_info->id }}">{{ $fuel_info->name }}</a></h3>
+                            <p class="pull-left">{{ $fuel_info->price }} BDT
 
                             </p>
-                            <ul class="pull-right d-flex">
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star-half-o"></i></li>
-                            </ul>
+
                         </div>
                     </div>
                 </li>
-                <li class="col-xl-3 col-lg-4 col-sm-6 col-12">
-                    <div class="product-wrap">
-                        <div class="product-img">
-                            <span>New</span>
-                            <img src="assets/images/product/11.jpg" alt="">
-                            <div class="product-icon flex-style">
-                                <ul>
-                                    <li><a data-toggle="modal" data-target="#exampleModalCenter" href="javascript:void(0);"><i class="fa fa-eye"></i></a></li>
-                                    <li><a href="wishlist.html"><i class="fa fa-heart"></i></a></li>
-                                    <li><a href="cart.html"><i class="fa fa-shopping-bag"></i></a></li>
-                                </ul>
+
+                <!-- Modal area start -->
+                <div class="modal fade" id="{{ $fuel_info->id}}" tabindex="-1">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <div class="modal-body d-flex">
+                                <div class="product-single-img w-50">
+                                    <img src="{{ asset('uploads/fuel') }}/{{ $fuel_info->fuel_photo }}" alt="">
+                                </div>
+                                <div class="product-single-content w-50">
+                                    <h3>{{ $fuel_info->name }}</h3>
+                                    <div class="rating-wrap fix">
+                                        <span class="pull-left">BDT {{ $fuel_info->price}}</span>
+
+                                    </div>
+                                    <p>
+
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis molestie scelerisque odio sit amet cursus. Phasellus vitae dolor metus. Pellentesque et blandit mi. Vestibulum lobortis ut risus quis elementum. Suspendisse fermentum dictum mattis.</p>
+
+                                </div>
                             </div>
                         </div>
-                        <div class="product-content">
-                            <h3><a href="single-product.html">Pure Nature Product</a></h3>
-                            <p class="pull-left">$125
-
-                            </p>
-                            <ul class="pull-right d-flex">
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star-half-o"></i></li>
-                            </ul>
-                        </div>
                     </div>
-                </li>
-                <li class="col-xl-3 col-lg-4 col-sm-6 col-12">
-                    <div class="product-wrap">
-                        <div class="product-img">
-                            <span>Sale</span>
-                            <img src="assets/images/product/14.jpg" alt="">
-                            <div class="product-icon flex-style">
-                                <ul>
-                                    <li><a data-toggle="modal" data-target="#exampleModalCenter" href="javascript:void(0);"><i class="fa fa-eye"></i></a></li>
-                                    <li><a href="wishlist.html"><i class="fa fa-heart"></i></a></li>
-                                    <li><a href="cart.html"><i class="fa fa-shopping-bag"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="product-content">
-                            <h3><a href="single-product.html">Pure Nature Product</a></h3>
-                            <p class="pull-left">$125
+                </div>
+                <!-- Modal area start -->
 
-                            </p>
-                            <ul class="pull-right d-flex">
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star-half-o"></i></li>
-                            </ul>
-                        </div>
-                    </div>
-                </li>
-                <li class="col-xl-3 col-lg-4 col-sm-6 col-12">
-                    <div class="product-wrap">
-                        <div class="product-img">
-                            <span>New</span>
-                            <img src="assets/images/product/12.jpg" alt="">
-                            <div class="product-icon flex-style">
-                                <ul>
-                                    <li><a data-toggle="modal" data-target="#exampleModalCenter" href="javascript:void(0);"><i class="fa fa-eye"></i></a></li>
-                                    <li><a href="wishlist.html"><i class="fa fa-heart"></i></a></li>
-                                    <li><a href="cart.html"><i class="fa fa-shopping-bag"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="product-content">
-                            <h3><a href="single-product.html">Pure Nature Product</a></h3>
-                            <p class="pull-left">$125
-
-                            </p>
-                            <ul class="pull-right d-flex">
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star-half-o"></i></li>
-                            </ul>
-                        </div>
-                    </div>
-                </li>
-                <li class="col-xl-3 col-lg-4 col-sm-6 col-12  moreload">
-                    <div class="product-wrap">
-                        <div class="product-img">
-                            <span>Sale</span>
-                            <img src="assets/images/product/10.jpg" alt="">
-                            <div class="product-icon flex-style">
-                                <ul>
-                                    <li><a data-toggle="modal" data-target="#exampleModalCenter" href="javascript:void(0);"><i class="fa fa-eye"></i></a></li>
-                                    <li><a href="wishlist.html"><i class="fa fa-heart"></i></a></li>
-                                    <li><a href="cart.html"><i class="fa fa-shopping-bag"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="product-content">
-                            <h3><a href="single-product.html">Pure Nature Product</a></h3>
-                            <p class="pull-left">$125
-
-                            </p>
-                            <ul class="pull-right d-flex">
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star-half-o"></i></li>
-                            </ul>
-                        </div>
-                    </div>
-                </li>
-                <li class="col-xl-3 col-lg-4 col-sm-6 col-12  moreload">
-                    <div class="product-wrap">
-                        <div class="product-img">
-                            <span>New</span>
-                            <img src="assets/images/product/9.jpg" alt="">
-                            <div class="product-icon flex-style">
-                                <ul>
-                                    <li><a data-toggle="modal" data-target="#exampleModalCenter" href="javascript:void(0);"><i class="fa fa-eye"></i></a></li>
-                                    <li><a href="wishlist.html"><i class="fa fa-heart"></i></a></li>
-                                    <li><a href="cart.html"><i class="fa fa-shopping-bag"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="product-content">
-                            <h3><a href="single-product.html">Pure Nature Product</a></h3>
-                            <p class="pull-left">$125
-
-                            </p>
-                            <ul class="pull-right d-flex">
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star-half-o"></i></li>
-                            </ul>
-                        </div>
-                    </div>
-                </li>
-                <li class="col-xl-3 col-lg-4 col-sm-6 col-12  moreload">
-                    <div class="product-wrap">
-                        <div class="product-img">
-                            <span>Sale</span>
-                            <img src="assets/images/product/8.jpg" alt="">
-                            <div class="product-icon flex-style">
-                                <ul>
-                                    <li><a data-toggle="modal" data-target="#exampleModalCenter" href="javascript:void(0);"><i class="fa fa-eye"></i></a></li>
-                                    <li><a href="wishlist.html"><i class="fa fa-heart"></i></a></li>
-                                    <li><a href="cart.html"><i class="fa fa-shopping-bag"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="product-content">
-                            <h3><a href="single-product.html">Pure Nature Product</a></h3>
-                            <p class="pull-left">$125
-
-                            </p>
-                            <ul class="pull-right d-flex">
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star-half-o"></i></li>
-                            </ul>
-                        </div>
-                    </div>
-                </li>
-                <li class="col-xl-3 col-lg-4 col-sm-6 col-12  moreload">
-                    <div class="product-wrap">
-                        <div class="product-img">
-                            <span>New</span>
-                            <img src="assets/images/product/7.jpg" alt="">
-                            <div class="product-icon flex-style">
-                                <ul>
-                                    <li><a data-toggle="modal" data-target="#exampleModalCenter" href="javascript:void(0);"><i class="fa fa-eye"></i></a></li>
-                                    <li><a href="wishlist.html"><i class="fa fa-heart"></i></a></li>
-                                    <li><a href="cart.html"><i class="fa fa-shopping-bag"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="product-content">
-                            <h3><a href="single-product.html">Pure Nature Product</a></h3>
-                            <p class="pull-left">$125
-
-                            </p>
-                            <ul class="pull-right d-flex">
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star-half-o"></i></li>
-                            </ul>
-                        </div>
-                    </div>
-                </li>
-                <li class="col-xl-3 col-lg-4 col-sm-6 col-12  moreload">
-                    <div class="product-wrap">
-                        <div class="product-img">
-                            <span>New</span>
-                            <img src="assets/images/product/4.jpg" alt="">
-                            <div class="product-icon flex-style">
-                                <ul>
-                                    <li><a data-toggle="modal" data-target="#exampleModalCenter" href="javascript:void(0);"><i class="fa fa-eye"></i></a></li>
-                                    <li><a href="wishlist.html"><i class="fa fa-heart"></i></a></li>
-                                    <li><a href="cart.html"><i class="fa fa-shopping-bag"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="product-content">
-                            <h3><a href="single-product.html">Pure Nature Product</a></h3>
-                            <p class="pull-left">$125
-
-                            </p>
-                            <ul class="pull-right d-flex">
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star-half-o"></i></li>
-                            </ul>
-                        </div>
-                    </div>
-                </li>
-                <li class="col-xl-3 col-lg-4 col-sm-6 col-12  moreload">
-                    <div class="product-wrap">
-                        <div class="product-img">
-                            <span>Sale</span>
-                            <img src="assets/images/product/6.jpg" alt="">
-                            <div class="product-icon flex-style">
-                                <ul>
-                                    <li><a data-toggle="modal" data-target="#exampleModalCenter" href="javascript:void(0);"><i class="fa fa-eye"></i></a></li>
-                                    <li><a href="wishlist.html"><i class="fa fa-heart"></i></a></li>
-                                    <li><a href="cart.html"><i class="fa fa-shopping-bag"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="product-content">
-                            <h3><a href="single-product.html">Pure Nature Product</a></h3>
-                            <p class="pull-left">$125
-
-                            </p>
-                            <ul class="pull-right d-flex">
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star-half-o"></i></li>
-                            </ul>
-                        </div>
-                    </div>
-                </li>
-                <li class="col-xl-3 col-lg-4 col-sm-6 col-12  moreload">
-                    <div class="product-wrap">
-                        <div class="product-img">
-                            <span>Sale</span>
-                            <img src="assets/images/product/3.jpg" alt="">
-                            <div class="product-icon flex-style">
-                                <ul>
-                                    <li><a data-toggle="modal" data-target="#exampleModalCenter" href="javascript:void(0);"><i class="fa fa-eye"></i></a></li>
-                                    <li><a href="wishlist.html"><i class="fa fa-heart"></i></a></li>
-                                    <li><a href="cart.html"><i class="fa fa-shopping-bag"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="product-content">
-                            <h3><a href="single-product.html">Pure Nature Product</a></h3>
-                            <p class="pull-left">$125
-
-                            </p>
-                            <ul class="pull-right d-flex">
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star-half-o"></i></li>
-                            </ul>
-                        </div>
-                    </div>
-                </li>
-                <li class="col-xl-3 col-lg-4 col-sm-6 col-12  moreload">
-                    <div class="product-wrap">
-                        <div class="product-img">
-                            <span>Sale</span>
-                            <img src="assets/images/product/5.jpg" alt="">
-                            <div class="product-icon flex-style">
-                                <ul>
-                                    <li><a data-toggle="modal" data-target="#exampleModalCenter" href="javascript:void(0);"><i class="fa fa-eye"></i></a></li>
-                                    <li><a href="wishlist.html"><i class="fa fa-heart"></i></a></li>
-                                    <li><a href="cart.html"><i class="fa fa-shopping-bag"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="product-content">
-                            <h3><a href="single-product.html">Pure Nature Product</a></h3>
-                            <p class="pull-left">$125
-
-                            </p>
-                            <ul class="pull-right d-flex">
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star-half-o"></i></li>
-                            </ul>
-                        </div>
-                    </div>
-                </li>
+                @endforeach
                 <li class="col-12 text-center">
                     <a class="loadmore-btn" href="javascript:void(0);">Load More</a>
                 </li>
@@ -612,53 +259,7 @@
         </div>
     </div>
     <!-- product-area end -->
-    <!-- testmonial-area start -->
-    <div class="testmonial-area testmonial-area2 bg-img-2 black-opacity">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="test-title text-center">
-                        <h2>What Our client Says</h2>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-10 offset-md-1 col-12">
-                    <div class="testmonial-active owl-carousel">
-                        <div class="test-items test-items2">
-                            <div class="test-content">
-                                <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical LatinContrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin</p>
-                                <h2>Elizabeth Ayna</h2>
-                                <p>CEO of Woman Fedaration</p>
-                            </div>
-                            <div class="test-img2">
-                                <img src="assets/images/test/1.png" alt="">
-                            </div>
-                        </div>
-                        <div class="test-items test-items2">
-                            <div class="test-content">
-                                <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical LatinContrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin</p>
-                                <h2>Elizabeth Ayna</h2>
-                                <p>CEO of Woman Fedaration</p>
-                            </div>
-                            <div class="test-img2">
-                                <img src="assets/images/test/1.png" alt="">
-                            </div>
-                        </div>
-                        <div class="test-items test-items2">
-                            <div class="test-content">
-                                <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical LatinContrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin</p>
-                                <h2>Elizabeth Ayna</h2>
-                                <p>CEO of Woman Fedaration</p>
-                            </div>
-                            <div class="test-img2">
-                                <img src="assets/images/test/1.png" alt="">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- testmonial-area end -->
+
+
+
 @endsection

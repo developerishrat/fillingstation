@@ -47,5 +47,20 @@ class FuelController extends Controller
        Fuel::find($delete_fuel_id)->delete();
         return back();
     }
+    function edit($edit_fuel_id){
+        $fuels= Fuel::find($edit_fuel_id);
+        return view('backend.fuel.edit',compact('fuels'));
+
+    }
+    function update(Request $request){
+       // print_r($request->all());
+       Fuel::find($request->fuel_id)->update([
+           'name'=>$request->name,
+           'quantity'=>$request->quantity,
+           'price'=>$request->price,
+
+       ]);
+       return back()->with('update','Fuel Update Successfully');
+    }
 
 }

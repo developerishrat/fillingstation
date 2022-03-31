@@ -12,8 +12,9 @@ Fuel
 <div class="sl-mainpanel">
     <nav class="breadcrumb sl-breadcrumb">
       <a class="breadcrumb-item" href="{{ url('/home') }}">Dashboard</a>
-      <a class="breadcrumb-item" href="index.html">Pages</a>
-      <span class="breadcrumb-item active">Blank Page</span>
+      <a class="breadcrumb-item" href="{{ url('addfuel') }}">Add Fuel</a>
+      <a class="breadcrumb-item" href="{{ url('viewfuel') }}">View Fuel</a>
+
     </nav>
 
     <div class="sl-pagebody">
@@ -53,7 +54,7 @@ Fuel
                                         <td><img width="50" src="{{ asset('uploads/fuel') }}/{{ $fuel_info->fuel_photo }}" alt=""></td>
                                         <td>{{ $fuel_info->created_at->diffForHumans() }}</td>
                                         <td>
-                                            <a href="" class="btn btn-info">Edit</a>
+                                            <a href="{{ url('/fuel/edit') }}/{{ $fuel_info->id }}" class="btn btn-info">Edit</a>
                                             <a href="{{ url('/fuel/delete') }}/{{ $fuel_info->id }}" class="btn btn-danger">Delete</a>
 
                                         </td>

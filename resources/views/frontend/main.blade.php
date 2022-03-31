@@ -61,23 +61,24 @@
                 <div class="row">
                     <div class="col-md-6 col-12">
                         <ul class="d-flex header-contact">
-                            <li><i class="fa fa-phone"></i> +01 123 456 789</li>
+                           <li><i class="fa fa-phone"></i> +880 1784898967</li>
                             <li><i class="fa fa-envelope"></i> youremail@gmail.com</li>
                         </ul>
                     </div>
                     <div class="col-md-6 col-12">
                         <ul class="d-flex account_login-area">
-                            <li>
-                                <a href="javascript:void(0);"><i class="fa fa-user"></i> My Account <i class="fa fa-angle-down"></i></a>
+                            <!--<li>
+                                <a href="javascript:void(0);"><i class="fa fa-user"></i>
+                                    My account <i class="fa fa-angle-down"></i></a>
                                 <ul class="dropdown_style">
-                                    <li><a href="login.html">Login</a></li>
+                                    </li>
                                     <li><a href="register.html">Register</a></li>
                                     <li><a href="cart.html">Cart</a></li>
                                     <li><a href="checkout.html">Checkout</a></li>
                                     <li><a href="wishlist.html">wishlist</a></li>
                                 </ul>
-                            </li>
-                            <li><a href="register.html"> Login/Register </a></li>
+                            </li>-->
+                            <li><a href="{{ url('login') }}"> Login/Register </a></li>
                         </ul>
                     </div>
                 </div>
@@ -97,112 +98,54 @@
                         <nav class="mainmenu">
                             <ul class="d-flex">
                                 <li class="active"><a href="{{ '/' }}">Home</a></li>
-                                <li><a href="about.html">About</a></li>
+                                <li><a href="{{ url('about') }}">About</a></li>
                                 <li>
                                     <a href="javascript:void(0);">Shop <i class="fa fa-angle-down"></i></a>
                                     <ul class="dropdown_style">
-                                        <li><a href="shop.html">Shop Page</a></li>
-                                        <li><a href="single-product.html">Product Details</a></li>
-                                        <li><a href="cart.html">Shopping cart</a></li>
-                                        <li><a href="checkout.html">Checkout</a></li>
-                                        <li><a href="wishlist.html">Wishlist</a></li>
+                                        <li><a href="{{ url('shop') }}">Shop Page</a></li>
+
+                                        <li><a href="{{ url('cart') }}">Cart</a></li><!--
+                                        <li><a href="wishlist.html">Wishlist</a></li>-->
                                     </ul>
                                 </li>
-                                <li>
-                                    <a href="javascript:void(0);">Pages <i class="fa fa-angle-down"></i></a>
-                                    <ul class="dropdown_style">
-                                        <li><a href="about.html">About Page</a></li>
-                                        <li><a href="single-product.html">Product Details</a></li>
-                                        <li><a href="cart.html">Shopping cart</a></li>
-                                        <li><a href="checkout.html">Checkout</a></li>
-                                        <li><a href="wishlist.html">Wishlist</a></li>
-                                        <li><a href="faq.html">FAQ</a></li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0);">Blog <i class="fa fa-angle-down"></i></a>
-                                    <ul class="dropdown_style">
-                                        <li><a href="blog.html">blog Page</a></li>
-                                        <li><a href="blog-details.html">blog Details</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="contact.html">Contact</a></li>
+
+
+                                <li><a href="{{ url('about') }}">Contact</a></li>
                             </ul>
                         </nav>
                     </div>
                     <div class="col-md-4 col-lg-2 col-sm-5 col-4">
                         <ul class="search-cart-wrapper d-flex">
                             <li class="search-tigger"><a href="javascript:void(0);"><i class="flaticon-search"></i></a></li>
+
                             <li>
-                                <a href="javascript:void(0);"><i class="flaticon-like"></i> <span>2</span></a>
+                                <a href="javascript:void(0);"><i class="flaticon-shop"></i> <span>{{ App\Models\Cart::where('generated_cart_id',Cookie::get('generated_cart_id'))->count()  }}</span></a>
                                 <ul class="cart-wrap dropdown_style">
+                                    @php
+                                        $sub_total=0;
+                                    @endphp
+                                    @foreach(App\Models\Cart::where('generated_cart_id',Cookie::get('generated_cart_id'))->get() as $cart_fuel)
                                     <li class="cart-items">
                                         <div class="cart-img">
-                                            <img src="{{ asset("frontend_assets/images/cart/1.jpg") }}" alt="">
+                                            <img width="50" src="{{ asset('uploads/fuel') }}/{{ App\Models\Fuel::find($cart_fuel->fuel_id)->fuel_photo }}" alt="">
                                         </div>
                                         <div class="cart-content">
-                                            <a href="cart.html">Pure Nature Product</a>
-                                            <span>QTY : 1</span>
-                                            <p>$35.00</p>
-                                            <i class="fa fa-times"></i>
+                                            <a href="cart.html">{{ App\Models\Fuel::find($cart_fuel->fuel_id)->name }}</a>
+                                            <span>QTY : {{ $cart_fuel->quantity }}</span>
+                                            <p>{{ App\Models\Fuel::find($cart_fuel->fuel_id)->price*$cart_fuel->quantity }} BDT</p>
+
+                                            <a href="{{ url('delete/cart') }}/{{ $cart_fuel->id }}"><i class="fa fa-times"></i></a>
+
                                         </div>
                                     </li>
-                                    <li class="cart-items">
-                                        <div class="cart-img">
-                                            <img src="{{ asset("frontend_assets/images/cart/3.jpg") }}" alt="">
-                                        </div>
-                                        <div class="cart-content">
-                                            <a href="cart.html">Pure Nature Product</a>
-                                            <span>QTY : 1</span>
-                                            <p>$35.00</p>
-                                            <i class="fa fa-times"></i>
-                                        </div>
-                                    </li>
-                                    <li>Subtotol: <span class="pull-right">$70.00</span></li>
-                                    <li>
-                                        <button>Check Out</button>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0);"><i class="flaticon-shop"></i> <span>3</span></a>
-                                <ul class="cart-wrap dropdown_style">
-                                    <li class="cart-items">
-                                        <div class="cart-img">
-                                            <img src="{{ asset("frontend_assets/images/cart/1.jpg") }}" alt="">
-                                        </div>
-                                        <div class="cart-content">
-                                            <a href="cart.html">Pure Nature Product</a>
-                                            <span>QTY : 1</span>
-                                            <p>$35.00</p>
-                                            <i class="fa fa-times"></i>
-                                        </div>
-                                    </li>
-                                    <li class="cart-items">
-                                        <div class="cart-img">
-                                            <img src="{{ asset("frontend_assets/images/cart/3.jpg") }}" alt="">
-                                        </div>
-                                        <div class="cart-content">
-                                            <a href="cart.html">Pure Nature Product</a>
-                                            <span>QTY : 1</span>
-                                            <p>$35.00</p>
-                                            <i class="fa fa-times"></i>
-                                        </div>
-                                    </li>
-                                    <li class="cart-items">
-                                        <div class="cart-img">
-                                            <img src="{{ asset("frontend_assets/images/cart/2.jpg") }}" alt="">
-                                        </div>
-                                        <div class="cart-content">
-                                            <a href="cart.html">Pure Nature Product</a>
-                                            <span>QTY : 1</span>
-                                            <p>$35.00</p>
-                                            <i class="fa fa-times"></i>
-                                        </div>
-                                    </li>
-                                    <li>Subtotol: <span class="pull-right">$70.00</span></li>
-                                    <li>
-                                        <button>Check Out</button>
+                                    @php
+                                        $sub_total=$sub_total+(App\Models\Fuel::find($cart_fuel->fuel_id)->price*$cart_fuel->quantity);
+                                    @endphp
+                                    @endforeach
+
+                                    <li>Subtotol: <span class="pull-right">{{ $sub_total }}</span></li>
+                                    <li class="pt-3">
+                                        <a href="{{ url('/cart') }}" class="btn btn-danger text-white" >Go To Cart</a>
                                     </li>
                                 </ul>
                             </li>
@@ -299,11 +242,11 @@
                     <div class="col-lg-12 col-12">
                         <div class="footer-top-text text-center">
                             <ul>
-                                <li><a href="home.html">home</a></li>
+                                <li><a href="{{ url('home') }}">home</a></li>
                                 <li><a href="#">our story</a></li>
-                                <li><a href="#">feed shop</a></li>
-                                <li><a href="blog.html">how to eat blog</a></li>
-                                <li><a href="contact.html">contact</a></li>
+                                <li><a href="{{ url('shop') }}">shop</a></li>
+                                <li><a href="#">blog</a></li>
+                                <li><a href="{{ url('contact') }}">contact</a></li>
                             </ul>
                         </div>
                     </div>
@@ -333,15 +276,15 @@
                     <div class="footer-adress">
                         <ul>
                             <li><a href="#"><span>Email:</span> domain@gmail.com</a></li>
-                            <li><a href="#"><span>Tel:</span> 0131234567</a></li>
-                            <li><a href="#"><span>Adress:</span> 52 Web Bangale , Adress line2 , ip:3105</a></li>
+                            <li><a href="#"><span>Tel:</span> +880 1784898967</a></li>
+                            <li><a href="#"><span>Adress:</span> Uttara ,Dhaka-1230</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-12">
                     <div class="footer-reserved">
                         <ul>
-                            <li>Copyright © 2019 Tohoney All rights reserved.</li>
+                            <li>Copyright © Developed By Ishrat Jahan RUmi.</li>
                         </ul>
                     </div>
                 </div>
@@ -377,7 +320,10 @@
 <script src="{{ asset("frontend_assets/js/jquery-ui.min.js") }}"></script>
 <!-- main js -->
 <script src="{{ asset("frontend_assets/js/scripts.js") }}"></script>
+
+@yield('footer_script');
 </body>
+
 
 
 <!-- Mirrored from themepresss.com/tf/html/tohoney/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Mar 2020 03:33:34 GMT -->
