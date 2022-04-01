@@ -9,6 +9,7 @@ use App\Models\Order;
 use App\Models\Fuel;
 use App\Models\Order_fuel_details;
 use App\Models\Order_billing_details;
+use App\Models\Stock;
 
 use App\Models\Cupon;
 use Auth;
@@ -91,11 +92,13 @@ class CartController extends Controller
                 'discount'=>session('discount_from_cart'),
                 'sub_total'=>session('total_from_cart')-session('discount_from_cart'),
                 'payment_method'=>$request->payment_method,
+
                 'created_at'=>Carbon::now(),
             ]);
 
             Order_billing_details::insert([
                 'order_id'=>$order_id,
+
                 'name'=>$request->name,
                 'email'=>$request->email,
                 'phone'=>$request->phone,
@@ -135,8 +138,46 @@ class CartController extends Controller
         }
 
     }
+    //Order Work
     function vieworder(){
-        return view('backend.order.vieworder');
+
+        $order_by_user=Order::where('user_id',Auth::id())->get();
+
+        return view('backend.order.vieworder',compact('order_by_user'));
     }
+
+    function viewadminorder(){
+        $orders=Order::orderBy('id','desc')->simplepaginate(4);
+        return view('backend.order.viewadmin',compact('orders'));
+    }
+
+    function detailsview($id){
+
+        //$order_billing_detail=Order_billing_details::find($id);
+        //$order_fuel_detail=Order_fuel_details::find($id);
+        $orders= Order::find($id);
+        return view('backend.order.viewdetails',compact('orders'));
+
+    }
+    public function statusupdate(Request $request,$id){
+
+        Order::where('id',$id)->update([
+
+        'status'=>$request->status,
+        ]);
+        // dd($request->all());
+        if($request->status=='Confirmed'){
+
+            //step 1 get order details of the following order
+        $items=Order_fuel_details::where('order_id',$id)->get();
+
+        }
+
+        return back()->with('message',' Updated Successfully');
+    }
+    function invoice(){
+        return view('backend.order.invoice');
+    }
+
 
 }

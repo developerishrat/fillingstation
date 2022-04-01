@@ -60,6 +60,7 @@ class FuelController extends Controller
            'price'=>$request->price,
 
        ]);
+
        return back()->with('update','Fuel Update Successfully');
     }
 

@@ -79,6 +79,31 @@
                                 </ul>
                             </li>-->
                             <li><a href="{{ url('login') }}"> Login/Register </a></li>
+
+
+               @auth()
+               <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Order</a>
+              <div class="dropdown-menu" aria-labelledby="dropdown04">
+                <a class="dropdown-item" href="">My Order</a>
+
+              </div>
+
+              @endauth
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                         </ul>
                     </div>
                 </div>

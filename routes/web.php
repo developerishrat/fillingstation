@@ -57,7 +57,13 @@ Route::post('/order/confirm',[CartController::class,'order']);
 
 //order
 Route::get('/vieworder',[CartController::class,'vieworder']);
+Route::get('/viewadminorder',[CartController::class,'viewadminorder']);
+Route::get('/detailsview/{id}',[CartController::class,'detailsview']);
+Route::post('/statusupdate/{id}',[CartController::class,'statusupdate']);
 
+
+//Invoice
+Route::get('/invoice',[CartController::class,'invoice']);
 
 
 //Cupon

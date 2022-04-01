@@ -1,6 +1,8 @@
 <!-- ########## START: LEFT PANEL ########## -->
+
 <div class="sl-logo"><a href=""><i class="icon ion-android-star-outline"></i> {{ env('APP_NAME') }}</a></div>
 <div class="sl-sideleft">
+
   <div class="input-group input-group-search">
     <input type="search" name="search" class="form-control" placeholder="Search">
     <span class="input-group-btn">
@@ -19,8 +21,8 @@
 
 
 
-    @if (Auth::user()->role!=1)
 
+    @if (Auth::user()->role!=1)
 
 
     <a href="{{ url('/viewuser') }}" class="sl-menu-link @yield('user')">
@@ -44,7 +46,7 @@
 
     </ul>
 
-    <a href="{{ url('/vieworder') }}" class="sl-menu-link @yield('order')" >
+    <a href="{{ url('/viewadminorder') }}" class="sl-menu-link @yield('order')" >
         <div class="sl-menu-item">
           <i class="menu-item-icon icon ion-ios-photos-outline tx-22"></i>
           <span class="menu-item-label">Order</span>

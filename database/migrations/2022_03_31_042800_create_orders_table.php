@@ -20,6 +20,7 @@ return new class extends Migration
             $table->integer('discount');
             $table->integer('sub_total');
             $table->integer('payment_method');
+            $table->string('status')->default('pending');
             $table->timestamps();
         });
     }
