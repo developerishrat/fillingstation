@@ -10,10 +10,12 @@ use App\Models\Fuel;
 use App\Models\Order_fuel_details;
 use App\Models\Order_billing_details;
 use App\Models\Stock;
-
 use App\Models\Cupon;
+use App\Mail\Sendinvoice;
 use Auth;
 use Carbon\Carbon;
+use PDF;
+use Mail;
 
 
 class CartController extends Controller
@@ -151,6 +153,7 @@ class CartController extends Controller
         return view('backend.order.viewadmin',compact('orders'));
     }
 
+
     function detailsview($id){
 
         //$order_billing_detail=Order_billing_details::find($id);
@@ -171,13 +174,33 @@ class CartController extends Controller
             //step 1 get order details of the following order
         $items=Order_fuel_details::where('order_id',$id)->get();
 
+
         }
 
-        return back()->with('message',' Updated Successfully');
+        //return back()->with('message',' Updated Successfully');
+        return redirect('/viewadminorder')->with('message','Updated Successfully!');
+
     }
-    function invoice(){
-        return view('backend.order.invoice');
+    //pdf
+    function invoice($id){
+        $orders=Order::find($id);
+        $pdf = PDF::loadView('backend.pdf.invoice',compact('orders'));
+        return $pdf->download('invoice.pdf');
+
+    }
+    //Mail
+    function invoicesendmail($id){
+        $ishrat=Order::where('id',$id)->get();
+        Mail::to(Auth::user()->email)->send(new Sendinvoice($ishrat));
     }
 
+    //Delete
+    function deleteorder($id){
+
+        Order::find($id)->delete();
+            return back()->with('deleteorder','Deleted Successfully!');
+
+
+    }
 
 }

@@ -25,18 +25,17 @@ OrderDetails
                         <div class="card-header">
                             <div class="alert alert-info">
 
-                                <h2 class="text-center">All Order Information</h2>
+                                <h2 class="text-center"> Invoice for Order </h2>
                             </div>
 
            <div>
             </div>
 
+
             <div class="col-lg-4">
-                <a href=""class="btn btn-info mb-4 " href="{{ url('/invoice') }}">Generate invoice</a>
-            <br>
+               <td><a href="{{ url('/invoice') }}/{{ $orders->id }}" class="btn btn-primary mb-4"> generate invoice</a></td>
+
             </div>
-
-
 
             <form action="{{url('/statusupdate')}}/{{ $orders->id }}" method="post" >
                 @csrf
@@ -101,7 +100,7 @@ OrderDetails
                         </tr>
                         @foreach(App\Models\Order_fuel_details::where('order_id',$orders->id)->get() as $data)
                         <tr>
-                            <td>#</td>
+                            <td>{{ $loop->index+1 }}</td>
                             <td>{{ $data->name }}</td>
                             <td>{{ $data->price }}</td>
                             <td>{{ $data->quantity }}</td>

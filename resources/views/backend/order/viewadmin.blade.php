@@ -35,6 +35,17 @@ Order
                               </div>
                           @endif
 
+                          @if (session('message'))
+                              <div class="alert alert-success" role="alert">
+                                  {{ session('message') }}
+                              </div>
+                          @endif
+                          @if (session('deleteorder'))
+                              <div class="alert alert-success" role="alert">
+                                  {{ session('deleteorder') }}
+                              </div>
+                          @endif
+
 
 
 
@@ -55,20 +66,27 @@ Order
 
                               @foreach ($orders as $index=>$order_info )
                                     <tr>
-                                        <td>{{ $index+1 }}</td>
+
+                                        <td>{{ $orders->firstitem()+$index }}</td>
                                         <td>{{ App\Models\User::find($order_info->user_id)->name }}</td>
                                         <td>{{ $order_info->total }}</td>
                                         <td>{{ $order_info->sub_total }}</td>
                                         <td>{{ $order_info->created_at->diffForHumans() }}</td>
                                         <td>{{ $order_info->status }}</td>
-                                        <td><a href="{{ url('/detailsview') }}/{{ $order_info->id }}" class="btn btn-info">View Details</a></td>
+                                        <td><a href="{{ url('/detailsview') }}/{{ $order_info->id }}" class="btn btn-info">View Details</a>
+                                        <a href="{{ url('/order/delete') }}/{{ $order_info->id }}" class="btn btn-danger">Delete</a>
+
+                                    </td>
+
+
+
 
                                     </tr>
                                     @endforeach
 
 
                           </table>
-
+                          {{ $orders->links() }}
                       </div>
 
 

@@ -13,4 +13,5 @@ class StockController extends Controller
         $fuels=Fuel::all();
         return view('backend.stock.view',compact('fuels'));
     }
+
 }

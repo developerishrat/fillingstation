@@ -7,6 +7,7 @@
     <title>FSMS - Filling Station Management System</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <link rel="shortcut icon" type="image/png" href="{{ asset("frontend_assets/images/favicon.png") }}">
     <!-- Place favicon.ico in the root directory -->
     <!-- all css here -->
@@ -67,9 +68,20 @@
                     </div>
                     <div class="col-md-6 col-12">
                         <ul class="d-flex account_login-area">
-                            <!--<li>
+
+
+                            <li class="nav-item active dropdown">
+
+                                @guest()
+                                <li class="nav-item"><a href="{{url('login')}}" class="nav-link">Login/Registration</a></li>
+
+
+                                @endguest
+
+                                @auth()
+
                                 <a href="javascript:void(0);"><i class="fa fa-user"></i>
-                                    My account <i class="fa fa-angle-down"></i></a>
+                                    {{auth()->user()->name}} <i class="fa fa-angle-down"></i></a>
                                 <ul class="dropdown_style">
                                     </li>
                                     <li><a href="register.html">Register</a></li>
@@ -77,8 +89,10 @@
                                     <li><a href="checkout.html">Checkout</a></li>
                                     <li><a href="wishlist.html">wishlist</a></li>
                                 </ul>
-                            </li>-->
-                            <li><a href="{{ url('login') }}"> Login/Register </a></li>
+
+                                @endauth
+
+                              </li>
 
 
                @auth()
@@ -114,7 +128,8 @@
                 <div class="row">
                     <div class="col-lg-3 col-md-7 col-sm-6 col-6">
                         <div class="logo">
-                            <a href="index.html">
+                            <a href="{{ '/' }}">
+
                         <img src="{{ asset("frontend_assets/images/logo.png") }}" alt="">
                         </a>
                         </div>
@@ -345,6 +360,7 @@
 <script src="{{ asset("frontend_assets/js/jquery-ui.min.js") }}"></script>
 <!-- main js -->
 <script src="{{ asset("frontend_assets/js/scripts.js") }}"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 @yield('footer_script');
 </body>

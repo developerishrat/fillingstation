@@ -61,6 +61,8 @@ class FuelController extends Controller
 
        ]);
 
+
+
        return back()->with('update','Fuel Update Successfully');
     }
 

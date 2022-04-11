@@ -1,76 +1,108 @@
-@extends('layouts.master')
-
+@extends('layouts.starlight')
+@section('stock')
+active
+@endsection
+@section('title')
+Stock
+@endsection
 
 @section('content')
 @include('layouts.nav')
-      <!-- partial -->
-      <div class="main-panel">
-        <div class="content-wrapper">
-              <!-- Breadcrumb -->
-            <div class="page-header">
-                <h3 class="page-title"> Material design icons </h3>
-                <nav aria-label="breadcrumb">
-                  <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Icons</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Material design icons</li>
-                  </ol>
-                </nav>
-              </div>
-                <!--End Breadcrumb -->
-            <!-- MY MAIN BODY -->
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-md-12">
-                        <div class="card">
+ <!-- ########## START: MAIN PANEL ########## -->
+ <div class="sl-mainpanel">
+    <nav class="breadcrumb sl-breadcrumb">
+      <a class="breadcrumb-item" href="{{ '/home' }}">Dashboard</a>
+      <a class="breadcrumb-item" href="{{ '/viewadminorder' }}">Order</a>
 
-                            <div class="card-header">
+    </nav>
+    <div class="sl-pagebody">
+      <div class="container">
+          <div class="row justify-content-center">
+              <div class="col-md-12">
+                  <div class="card">
+                      <div class="card-header">
+                          <div class="alert alert-info">
 
-                                <h3> All Stock Information</h3>
-                            </div>
+                              <h2 class="text-center">All Stock Information</h2>
+                          </div>
 
-                            <div class="card-body">
-
-
-
-                                <table class="table table-striped">
-                                    <tr>
-                                        <th>SL</th>
-                                        <th>Fuel Name</th>
-                                        <th>Stock</th>
-
-
-                                    </tr>
-
-                                    @foreach ($fuels as $index=>$fuel_info )
-                                    <tr>
-                                        <td>{{ $index+1 }}</td>
-                                        <td>{{ $fuel_info->name }}</td>
-                                        <td>{{ $fuel_info->quantity }}</td>
-
-
-
-                                       <td>
-
-                                              <!--  <a href="#"class="btn btn-success btn-sm" data-toggle="tooltip" data-original-title="Edit"><i class="mdi mdi-tooltip-edit"></i></a>
-                                                <a href="#" class="btn btn-primary btn-sm" data-toggle="tooltip" data-original-title="Print"><i class="fa fa-print font-14"></i></a>
-                                                <a href="#" class="btn btn-danger btn-sm" data-toggle="tooltip" data-original-title="Delete"><i class="mdi mdi-delete"></i></a>-->
-
-                                        </td>
-                                    </tr>
-
-                                        @endforeach
-
-                                </table>
-
-                            </div>
-                        </div>
                     </div>
-                </div>
-            </div>
-             <!-- END MAIN BODY -->
-        </div>
-        <!-- content-wrapper ends -->
 
-@include('layouts.footer')
+                      <div class="card-body">
+                          @if (session('status'))
+                              <div class="alert alert-success" role="alert">
+                                  {{ session('status') }}
+                              </div>
+                          @endif
+
+                          @if (session('message'))
+                              <div class="alert alert-success" role="alert">
+                                  {{ session('message') }}
+                              </div>
+                          @endif
+
+
+
+
+                          <table class="table table-striped">
+                            <tr>
+                                <th>SL</th>
+                                <th>Fuel Name</th>
+                                <th>Stock</th>
+
+                            </tr>
+
+                            @foreach ($fuels as $index=>$fuel_info )
+                            <tr>
+                                <td>{{ $index+1 }}</td>
+                                <td>{{ $fuel_info->name }}</td>
+                                <td>{{ $fuel_info->quantity }}</td>
+
+
+                            </tr>
+
+                                @endforeach
+
+                        </table>
+
+                      </div>
+
+
+                          </table>
+
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+    </div><!-- sl-pagebody -->
+
+
+
+
+</div><!-- sl-mainpanel -->
+<!-- ########## END: MAIN PANEL ########## -->
+
+
+
+
+
+
+
+
+
 
 @endsection
+
+
+
+
+
+
+
+
+
+
+
+

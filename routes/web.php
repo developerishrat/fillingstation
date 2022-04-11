@@ -57,22 +57,30 @@ Route::post('/order/confirm',[CartController::class,'order']);
 
 //order
 Route::get('/vieworder',[CartController::class,'vieworder']);
+Route::get('/order/delete/{id}',[CartController::class,'deleteorder']);
 Route::get('/viewadminorder',[CartController::class,'viewadminorder']);
 Route::get('/detailsview/{id}',[CartController::class,'detailsview']);
 Route::post('/statusupdate/{id}',[CartController::class,'statusupdate']);
 
 
 //Invoice
-Route::get('/invoice',[CartController::class,'invoice']);
-
+Route::get('/invoice/{id}',[CartController::class,'invoice']);
+//Invoice Send Mail
+Route::get('/invoice/send/{id}',[CartController::class,'invoicesendmail']);
 
 //Cupon
 Route::get('/cupon',[CuponController::class,'cupon']);
 Route::post('/cupon/insert',[CuponController::class,'insert']);
+Route::get('/coupon/delete/{id}',[CuponController::class,'delete']);
 
 
 //CheckOut
 Route::get('/checkout', [FrontendController::class, 'checkout']);
+
+
+//Stock
+Route::get('/stock', [StockController::class, 'list']);
+
 
 
 

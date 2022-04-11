@@ -19,4 +19,11 @@ class CuponController extends Controller
         ]);
         return back()->with('cupon','Cupon Added');
     }
+    function delete($id){
+        // echo $delete_fuel_id;
+        Cupon::find($id)->delete();
+         return back()->with('cupon','Coupon Delete Successfully');
+     }
+
+
 }

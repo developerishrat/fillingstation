@@ -46,6 +46,21 @@
 
     </ul>
 
+    <a href="{{ url('/cupon') }}" class="sl-menu-link @yield('cupon')" >
+        <div class="sl-menu-item">
+          <i class="menu-item-icon icon ion-ios-photos-outline tx-22"></i>
+          <span class="menu-item-label">Coupon</span>
+        </div><!-- menu-item -->
+      </a><!-- sl-menu-link -->
+
+    <a href="{{ url('/stock') }}" class="sl-menu-link @yield('stock')" >
+        <div class="sl-menu-item">
+          <i class="menu-item-icon icon ion-ios-photos-outline tx-22"></i>
+          <span class="menu-item-label">Stock</span>
+        </div><!-- menu-item -->
+      </a><!-- sl-menu-link -->
+
+
     <a href="{{ url('/viewadminorder') }}" class="sl-menu-link @yield('order')" >
         <div class="sl-menu-item">
           <i class="menu-item-icon icon ion-ios-photos-outline tx-22"></i>

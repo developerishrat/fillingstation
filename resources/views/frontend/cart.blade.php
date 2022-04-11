@@ -21,14 +21,14 @@
 
 <div class="row">
     <div class="col-lg-6 m-auto">
-        <div class="my-5">
+       <!-- <div class="my-5">
             @if (session('order'))
         <div class="alert alert-success">
             <h3>{{ session('order') }}</h3>
         </div>
          @endif
 
-        </div>
+        </div>-->
     </div>
 </div>
 
@@ -159,6 +159,15 @@
 
 
     </script>
+    @if (session('order'))
+    <script>
+        Swal.fire({
+    position: 'top-middle',
+    icon: 'success',
+    title: ' Successfully Place Your Order.Please Wait for Our Confirmation',
+    showConfirmButton: false,
+    timer: 4500
+    })
+    </script>
+    @endif
     @endsection
-
-
